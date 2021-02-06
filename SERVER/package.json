@@ -1,0 +1,25 @@
+{
+  "name": "mern-starter-server",
+  "version": "1.0.0",
+  "description": "server for mern starter application",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/airgead73/mern-starter.git"
+  },
+  "keywords": [
+    "mongodb",
+    "react",
+    "express",
+    "node"
+  ],
+  "author": "dan moneypenny",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/airgead73/mern-starter/issues"
+  },
+  "homepage": "https://github.com/airgead73/mern-starter#readme"
+}
