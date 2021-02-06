@@ -6,10 +6,8 @@ const cors = require('cors');
  */
 
 const app = express();
-
-app.set('environment', process.env.NODE_ENV);
-
-console.log(app.get('environment'));
+const { connectDB } = require('../CONFIG');
+connectDB();
 
 /**
  * SECURITY
@@ -39,6 +37,9 @@ app.use(cors());
  * LOAD ROUTES
  */
 
+app.get('/', (req, res, next) => {
+  res.send('app loaded')
+});
 
 
 /**
