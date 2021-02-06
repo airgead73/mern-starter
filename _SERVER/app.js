@@ -6,7 +6,7 @@ const cors = require('cors');
  */
 
 const app = express();
-const { connectDB } = require('../CONFIG');
+const { connectDB } = require('../_CONFIG');
 connectDB();
 
 /**
