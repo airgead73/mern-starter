@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 const ProjectSchema = new Schema({
   title: { type: String, required: [true, 'Title is required.'] },
   code: { type: String, required: [true, 'A code is required.'] },
-  edition: { type: String, required: false },  
+  edition: { type: Number, required: false },  
   author: { type: String, required: false },
   notes: { type: String, required: false }
 });

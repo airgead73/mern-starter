@@ -8,7 +8,16 @@ const Project = require('../models/Project');
  */
 
 exports.create = asyncHandler(async function(req, res, next) {
-  res.send('Create project');
+  const project = new Project(req.body);
+  await project.save();
+
+  return res
+    .status(200)
+    .json({
+      success: true,
+      message: 'Project has been added.',
+      results: project
+    });
 });
 
 /**
@@ -18,7 +27,15 @@ exports.create = asyncHandler(async function(req, res, next) {
  */
 
 exports.read = asyncHandler(async function(req, res, next) {
-  res.send('Read projects');
+  const projects = await Project.find();
+  return res
+    .status(200)
+    .json({
+      success: true,
+      message: 'Projects found.',
+      count: projects.length,
+      results: projects
+    });  
 });
 
 /**
@@ -28,7 +45,18 @@ exports.read = asyncHandler(async function(req, res, next) {
  */
 
 exports.read_one = asyncHandler(async function(req, res, next) {
-  res.send('Read project');
+  const project = await Project.findById(req.params.projectID);
+
+  if(project) {
+    return res
+    .status(200)
+    .json({
+      success: true,
+      message: 'Projects found.',
+      results: project
+    });    
+  } 
+
 });
 
 /**

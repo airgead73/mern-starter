@@ -35,8 +35,6 @@ exports.create = asyncHandler(async function(req, res, next) {
     role
   }
 
-
-
   const newUser = new User(userData);
   const savedUser = await newUser.save();
 
@@ -95,7 +93,7 @@ exports.read = asyncHandler(async function(req, res, next) {
       success: true,
       message: 'Users found',
       count: users.length,
-      users
+      results: users
     });
 });
 
@@ -113,7 +111,7 @@ exports.read_one = asyncHandler(async function(req, res, next) {
     .json({
       success: true,
       message: 'User found',
-      user
+      results: user
     });
 });
 
