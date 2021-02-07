@@ -45,64 +45,86 @@ app.use(express.static(path.join(__dirname, './../_PUBLIC')));
  * LOAD ROUTES
  */
 
-const asyncHandler = require('./src/middleware/handleAsync');
+ const { apiRouter } = require('./src/routes/index');
+ app.use('/api', apiRouter);
 
-app.post('/api/users', asyncHandler(async function(req, res, next) {
+// const asyncHandler = require('./src/middleware/handleAsync');
 
-  const { email, firstName, lastName, role } = req.body;
+// app.get('/api/users', asyncHandler(async function(req, res, next) {
 
-  // check if email exists
-  const existingEmail = await User.findOne({ email }).lean();
+//   const users = await User.find();
 
-  if(existingEmail) {
-    return res
-      .status(400)
-      .json({
-        success: false,
-        message: 'Email already exists.'
-      });
-  }
+//   return res
+//     .status(200)
+//     .json({
+//       success: true,
+//       message: 'Users found',
+//       count: users.length,
+//       users
+//     });
 
-  const password = await hashPassword(req.body.password);
+// }));
 
-  const userData = {
-    email: email.toLowerCase(),
-    firstName,
-    lastName,
-    password,
-    role
-  }
 
-  const newUser = new User(userData);
-  const savedUser = await newUser.save();
 
-  if(savedUser) {
 
-    return res
-      .status(200)
-      .json({
-        success: true,
-        message: `New user ${savedUser.firstName} ${savedUser.lastName} created.`
-      });
+
+// app.post('/api/users', asyncHandler(async function(req, res, next) {
+
+//   const { email, firstName, lastName, role } = req.body;
+
+//   // check if email exists
+//   const existingEmail = await User.findOne({ email }).lean();
+
+//   if(existingEmail) {
+//     return res
+//       .status(400)
+//       .json({
+//         success: false,
+//         message: 'Email already exists.'
+//       });
+//   }
+
+//   const password = await hashPassword(req.body.password);
+
+//   const userData = {
+//     email: email.toLowerCase(),
+//     firstName,
+//     lastName,
+//     password,
+//     role
+//   }
+
+//   const newUser = new User(userData);
+//   const savedUser = await newUser.save();
+
+//   if(savedUser) {
+
+//     return res
+//       .status(200)
+//       .json({
+//         success: true,
+//         message: `New user ${savedUser.firstName} ${savedUser.lastName} created.`
+//       });
     
-  } else {
-    return res
-    .status(400)
-    .json({
-      success: false,
-      message: 'There was problem creating this account.'
-    });
-  }
+//   } else {
+//     return res
+//     .status(400)
+//     .json({
+//       success: false,
+//       message: 'There was problem creating this account.'
+//     });
+//   }
 
   
 
-}));
+// }));
 
-app.post('/api/users/authenticate', asyncHandler(async function(req, res, next) {
+// app.post('/api/users/authenticate', asyncHandler(async function(req, res, next) {
 
-  const { email, firstName, lastName } = req.body;
+//   const { email, firstName, lastName } = req.body;
 
-}));
+// }));
 
 
 
