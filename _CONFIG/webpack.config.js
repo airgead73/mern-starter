@@ -23,7 +23,8 @@ module.exports = {
   },
   output: {
     path: path.resolve(__dirname, '../_PUBLIC'),
-    filename: 'index_bundle.js'
+    filename: 'index_bundle.js',
+    publicPath: '/'
   },
   devServer: {
     port: 8000,

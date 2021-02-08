@@ -2,7 +2,8 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Home from './components/Home';
 import Navbar from './components/Navbar';
-import Project from './components/Project';
+import ProjectForm from './components/ProjectForm';
+import ProjectDetail from './components/ProjectDetail';
 
 function App() {
   return (
@@ -12,9 +13,17 @@ function App() {
         <Route exact path="/">
           <Home/>
         </Route>
-        <Route path="/project">
-          <Project/>
-        </Route>                 
+       
+        <Route exact path="/create">
+          <ProjectForm/>
+        </Route>  
+
+        <Route path="/projects/:id">
+        <ProjectDetail/>
+        </Route>              
+
+        
+                 
       </Switch>      
     </Router>
   )

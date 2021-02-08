@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Project = () => {
+const ProjectForm = () => {
   return ( 
     <React.Fragment>
       <h2>Add another project</h2>
@@ -8,4 +8,4 @@ const Project = () => {
    );
 }
  
-export default Project;
+export default ProjectForm;

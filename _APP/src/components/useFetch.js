@@ -7,28 +7,35 @@ const useFetch = (url) => {
 
   React.useEffect(() => {
 
+    const abortConstant = new AbortController();
+
     setTimeout(() => {
-      fetch(url)
+      fetch(url, { signal: abortConstant.signal })
 
         .then(response => {
           if(!response.ok) {
             throw Error('Could not fetch data for that resource.')
           }
           console.log(response)
-          // if(response.ok)
           return response.json()
         })
         .then((data) => {
-          // console.log(data);
           setData(data.results);
           setIsLoading(false);
           setError(null);
         })
         .catch((err) => {
-          setError(err.message);
-          setIsLoading(false);
+          if(err.name === 'AbortError') {
+            console.log('fetch aborted')
+          } else {
+            setError(err.message);
+            setIsLoading(false);
+          }
+
         })
-    }, 1000)
+    }, 1000);
+
+    return () => abortConstant.abort();
 
   },[url]);  
 
