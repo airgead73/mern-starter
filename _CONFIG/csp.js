@@ -1,4 +1,4 @@
-const getNonce = require('./nonce');
+const getNonce = require('./getNonce');
 const NONCE = getNonce();
 const policies = {
   directives: {

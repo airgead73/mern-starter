@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App'
 import './index.scss';
-__webpack_nonce__ = require('../../_CONFIG/nonce');
+__webpack_nonce__ = require('../../_CONFIG/getNonce');
 
 ReactDOM.render(
   <React.StrictMode>
