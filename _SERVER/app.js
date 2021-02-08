@@ -1,6 +1,8 @@
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
+const helmet = require('helmet');
+const policies = require('../_CONFIG/csp');
 
 /**
  * INTIALIZE APP
@@ -15,6 +17,8 @@ connectDB();
  */
 
 app.use(cors());
+app.use(helmet());
+app.use(helmet.contentSecurityPolicy(policies));
 
 /**
  * MIDDLEWARE
