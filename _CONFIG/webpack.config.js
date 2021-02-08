@@ -26,7 +26,8 @@ module.exports = {
     filename: 'index_bundle.js'
   },
   devServer: {
-    port: 8000
+    port: 8000,
+    historyApiFallback: true,
   },
   plugins: [
     new HtmlWebpackPlugin({

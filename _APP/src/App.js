@@ -1,10 +1,22 @@
 import React from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import Home from './components/Home';
+import Navbar from './components/Navbar';
+import Project from './components/Project';
 
 function App() {
   return (
-    <React.Fragment>
-      <h1>client</h1>
-    </React.Fragment>
+    <Router>          
+      <Navbar/>
+      <Switch>
+        <Route exact path="/">
+          <Home/>
+        </Route>
+        <Route path="/project">
+          <Project/>
+        </Route>                 
+      </Switch>      
+    </Router>
   )
 }
 
