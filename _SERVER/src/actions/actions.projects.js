@@ -47,6 +47,8 @@ exports.read = asyncHandler(async function(req, res, next) {
 exports.read_one = asyncHandler(async function(req, res, next) {
   const project = await Project.findById(req.params.projectID);
 
+  console.log(project);
+
   if(project) {
     return res
     .status(200)

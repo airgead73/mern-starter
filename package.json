@@ -5,9 +5,10 @@
   "main": "index.js",
   "scripts": {
     "start": "NODE_ENV=production node index.js",
-    "dev": "NODE_ENV=development nodemon -r dotenv/config index.js",
-    "build:client": "NODE_ENV=production webpack --config ./_CONFIG/webpack.config.js",
-    "start:client": "webpack serve --config ./_CONFIG/webpack.config.js"
+    "dev": "concurrently \"npm:server:dev\" \"npm:client:dev\"",
+    "server:dev": "NODE_ENV=development nodemon -r dotenv/config index.js",
+    "client:build": "NODE_ENV=production webpack --config ./_CONFIG/webpack.config.js",
+    "client:dev": "webpack serve --config ./_CONFIG/webpack.config.js"
   },
   "babel": {
     "presets": [
@@ -46,6 +47,7 @@
     "@babel/preset-env": "^7.12.13",
     "@babel/preset-react": "^7.12.13",
     "babel-loader": "^8.2.2",
+    "concurrently": "^5.3.0",
     "css-loader": "^5.0.1",
     "dotenv": "^8.2.0",
     "dotenv-webpack": "^6.0.0",
