@@ -1,7 +1,7 @@
 $color: #f1f1f1;
 body {
   background-color: $color;
-  max-width: 800px;
+  width: 90%;
   margin-right: auto;
   margin-left: auto;
 }
@@ -9,6 +9,30 @@ body {
 h2 {
   color: indianred;
 }
+
+// NAV
+.nav {
+  padding: 15px;
+  margin-bottom: 40px;
+  background-color: darkslategray;
+  color: white;
+  &__list {
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    list-style-type: none;
+  }
+  &__item {
+    padding: 0 8px;
+    color: white;
+    & a {
+      color: white;
+    }
+  } 
+}
+
+// FORM
 
 form {
   box-sizing: border-box;
@@ -37,5 +61,11 @@ form {
   & textarea {
     box-sizing: border-box;
     min-height: 75px;
+  }
+  button {
+    display: inline-block;
+    padding: 12px;
+    margin-top: 15px;
+    margin-bottom: 15px;
   }
 }

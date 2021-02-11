@@ -4,6 +4,7 @@ import Home from './components/Home';
 import Navbar from './components/Navbar';
 import ProjectForm from './components/ProjectForm';
 import ProjectDetail from './components/ProjectDetail';
+import NotFound from './components/NotFound';
 
 function App() {
   return (
@@ -20,7 +21,10 @@ function App() {
 
         <Route path="/projects/:id">
         <ProjectDetail/>
-        </Route>              
+        </Route> 
+        <Route path="*">
+          <NotFound/>
+          </Route>             
 
         
                  
