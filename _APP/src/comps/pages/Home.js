@@ -1,6 +1,6 @@
 import React from 'react';
 import ProjectList from './ProjectList';
-import useFetch from './useFetch';
+import useFetch from '../hooks/useFetch';
 
 const Home = () => {
 

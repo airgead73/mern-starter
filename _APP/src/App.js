@@ -1,10 +1,10 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import Home from './components/Home';
-import Navbar from './components/Navbar';
-import ProjectForm from './components/ProjectForm';
-import ProjectDetail from './components/ProjectDetail';
-import NotFound from './components/NotFound';
+import Home from './comps/pages/Home';
+import Navbar from './comps/layout/Navbar';
+import ProjectForm from './comps/pages/ProjectForm';
+import ProjectDetail from './comps/pages/ProjectDetail';
+import NotFound from './comps/pages/NotFound';
 
 function App() {
   return (
