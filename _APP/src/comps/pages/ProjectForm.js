@@ -27,7 +27,7 @@ const ProjectForm = () => {
 
     setIsPending(true);
 
-    fetch('http://localhost:4000/api/projects', {
+    fetch('/api/projects', {
       method: 'POST',
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(project)

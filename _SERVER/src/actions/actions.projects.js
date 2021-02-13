@@ -1,5 +1,6 @@
 const asyncHandler = require('../middleware/handleAsync');
 const Project = require('../models/Project');
+const createError = require('http-errors');
 
 /**
  * @route   POST /api/projects
@@ -78,7 +79,23 @@ exports.update = asyncHandler(async function(req, res, next) {
  */
 
 exports.delete_one = asyncHandler(async function(req, res, next) {
-  res.send('Delete project');
+  
+  // find project
+  let project = await Project.findById(req.params.projectID);
+
+  if(!project) return next(createError(404, 'Project not found'));
+
+  //delete project
+  await project.remove();
+
+  return res
+    .status(200)
+    .json({
+      success: true,
+      message: `${project.code} has been deleted`
+    });
+
+
 });
 
 /**
@@ -88,5 +105,14 @@ exports.delete_one = asyncHandler(async function(req, res, next) {
  */
 
 exports.delete_all = asyncHandler(async function(req, res, next) {
-  res.send('Delete all projects');
+
+  Project.collection.drop();
+
+  return res
+    .status(200)
+    .json({
+      success: true,
+      message: 'Project collection deleted.'
+    })
+
 });
