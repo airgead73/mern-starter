@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, Route, Switch } from 'react-router-dom';
+import { Link, Route, Switch, useRouteMatch } from 'react-router-dom';
 import projects from './data/projects';
 
 function Home () {
@@ -11,18 +11,21 @@ function Project () {
 }
 
 function Projects () {
+
+  const { url, path } = useRouteMatch();
+
   return (
     <React.Fragment>
       <h1>Projects</h1>
       <ul>
         {projects.map(({ title, code, id }) => (
-          <li key={id}><Link to={`/projects/${id}`}>{code} {title}</Link></li>
+          <li key={id}><Link to={`/${url}/${id}`}>{code} {title}</Link></li>
         ))}
       </ul>
 
       <hr/>
 
-      <Route path={`/projects/:projectID`}>
+      <Route path={`/${path}/:projectID`}>
         <Project/>
       </Route>
     </React.Fragment>
@@ -40,13 +43,16 @@ function App() {
 
     <hr/>  
 
+<Switch>
+                                                        <Route path="/projects">
+                                                              <Projects/>
+                                                            </Route>
+                                                        </Switch>
     <Route exact path="/">
       <Home/>
     </Route> 
 
-    <Route path="/projects">
-      <Projects/>
-    </Route>       
+       
     </main>
 
 
