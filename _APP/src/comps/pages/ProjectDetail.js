@@ -1,16 +1,16 @@
 import React from 'react';
 import { useHistory, useParams } from 'react-router';
-import useFetch from '../hooks/useFetch';
+import useGet from '../hooks/useGet';
 
 const ProjectDetail = () => {
 
   const { id } = useParams();
-  const { data: project, error, isLoading } = useFetch(`http://localhost:4000/api/projects/${id}`);
+  const { data: project, error, isLoading } = useGet(`/api/projects/${id}`);
   const history = useHistory();
 
   const handleClick = () => {
 
-    fetch(`http://4000/api/projects/${id}`, {
+    fetch(`/api/projects/${id}`, {
       method: 'DELETE'
     }).then(() => {
       history.push('/')

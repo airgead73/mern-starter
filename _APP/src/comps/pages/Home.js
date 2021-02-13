@@ -1,10 +1,10 @@
 import React from 'react';
 import ProjectList from './ProjectList';
-import useFetch from '../hooks/useFetch';
+import useGet from '../hooks/useGet';
 
 const Home = () => {
 
-  const { data: projects, isLoading, error } = useFetch('http://localhost:4000/api/projects');
+  const { data: projects, isLoading, error } = useGet('/api/projects');
 
   return ( 
     <React.Fragment>

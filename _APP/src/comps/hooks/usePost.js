@@ -1,6 +1,6 @@
 import React from 'react';
 
-const useFetch = (url) => {
+const usePost = (url) => {
   const [data, setData] = React.useState(null);
   const [isLoading, setIsLoading] = React.useState(true);
   const [error, setError] = React.useState(null);
@@ -43,4 +43,4 @@ const useFetch = (url) => {
 
 }
 
-export default useFetch;
+export default usePost;
