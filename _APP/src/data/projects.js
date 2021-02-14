@@ -12,7 +12,16 @@ const projects = [
         id: "chrqtiwe23847t",
         number: 1,
         title: "The Sociological Imagination",
-        project: "60202b40057de952a16877f7"
+        project: "60202b40057de952a16877f7",
+        photos: [
+          {
+            id: "wkjlbrkjr",
+            number: 1,
+            chapter: "chrqtiwe23847t",
+            project: "60202b40057de952a16877f7",
+            caption: "Caption for photo 1.1"
+          }
+        ]
       },
       {
         id: "c7tiituioiiwe2g544eddf",

@@ -1,11 +1,12 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 const NotFound = () => {
+  const { pathname } = useLocation();
   return ( 
     <React.Fragment>
       <h2>Sorry</h2>
-      <p>That page can't be found.</p>
+      <p>Page <code>{pathname}</code> can't be found.</p>
       <Link to='/'>Back to home page...</Link>
     </React.Fragment>
    );

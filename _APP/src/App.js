@@ -106,13 +106,18 @@ function App() {
 
         <hr/>  
 
-      
-        <Route exact path="/">
+      <Switch>
+      <Route exact path="/">
           <Home/>
           </Route>
         <Route path="/projects">
           <Projects/>
         </Route>
+        <Route path="*">
+          <NotFound/>
+        </Route>
+      </Switch>
+
 
     
           
