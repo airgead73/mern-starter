@@ -106,3 +106,5 @@ dist
 # Custom
 _CONFIG/nonce.js
 .env
+
+.DS_Store
