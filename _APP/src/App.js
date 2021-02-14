@@ -2,10 +2,7 @@ import React from 'react';
 import { Link, Route, Switch, useRouteMatch, useParams } from 'react-router-dom';
 import projects from './data/projects';
 import NotFound from './comps/pages/NotFound';
-
-function Home () {
-  return <h1>HOME</h1>
-}
+import Home from './comps/pages/Home';
 
 function Task () {
   const { projectID, taskID } = useParams();
@@ -65,8 +62,6 @@ function Project () {
       <Task/>
     </Route>    
     </React.Fragment>
-
-
 
   )
 }
