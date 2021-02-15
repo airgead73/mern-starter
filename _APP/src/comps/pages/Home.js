@@ -5,6 +5,8 @@ const Home = () => {
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
   const [isPending, setIsPending] = React.useState(false);
+  const [isSuccess, setIsSuccess] = React.useState(false);
+  const [user, setUser] = React.useState('');
 
   const handleSubmit = (e) => {
 
@@ -15,12 +17,39 @@ const Home = () => {
       password
     }
 
-    console.log(credentials)
+    setIsPending(true);
+
+    fetch('/api/authenticate', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json'},
+      body: JSON.stringify(credentials)
+    })
+    .then((response) => {
+      if(!response.ok) {
+        throw Error('Could not fetch data for that resource.')
+      }
+      console.log(response)
+      return response.json()
+    })
+    .then((data) => {
+      setIsPending(false);
+      setUser({
+        name: `${data.userInfo.firstName} ${data.userInfo.lastName}`
+      })
+      setIsSuccess(true);
+      console.log(data)
+    })
+    .catch((err) => {
+      setIsPending(false);
+      console.error(err.message);
+    })
 
   }
 
   return ( 
     <React.Fragment>
+      {isPending && <p>pending...</p>}
+      {isSuccess && <p>{user.name} is logged in.</p>}
       <form onSubmit={handleSubmit}>
         <fieldset>
           <legend>sign in</legend>
