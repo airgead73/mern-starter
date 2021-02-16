@@ -4,28 +4,50 @@ import NotFound from './comps/pages/NotFound';
 import Home from './comps/pages/Home';
 import MainDashboard from './comps/pages/MainDashboard';
 
+function generateId() {
+  return '_' + Math.random().toString(36).substr(2,9);
+}
+
 function App() {
+
+  const [todos, setTodos] = React.useState([]);
+  const [input, setInput] = React.useState('');
+
+  const handleSubmit = () => {
+    setTodos((todos) => todos.concat({
+      text: input,
+      id: generateId()
+    }));
+    setInput('')
+  }
+
+  const removeTodo = (id) => {
+    setTodos((todos) => todos.filter((t) => t.id !== id))
+  }
+
+
   return (
-      <main>
-        <ul>
-          <li><Link to="/" exact="true">Home</Link></li>
-          <li><Link to="/application">Dashboard</Link></li>
-        </ul>
+    <div>
+      <input 
+        type="text"
+        value={input}
+        placeholder='New todo'
+        onChange={(e) => setInput(e.target.value)}
+      />
+      <button onClick={handleSubmit}>add</button>
 
-        <hr/>  
+      <ul>
+        {todos.map(({ text, id }) => (
 
-      <Switch>
-        <Route exact path="/">
-          <Home/>
-        </Route>
-        <Route path="/application">
-          <MainDashboard/>
-        </Route> 
-        <Route path="*">
-          <NotFound/>
-        </Route>
-      </Switch>
-    </main>
+          <li key={id}>
+            <span>{text}</span>
+            <button onClick={() => removeTodo(id)}>x</button>            
+          </li>
+
+        ))}
+      </ul>
+
+    </div>
   )
 }
 
