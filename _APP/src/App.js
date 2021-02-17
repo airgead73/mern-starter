@@ -3,13 +3,19 @@ import { Link, Route, Switch } from 'react-router-dom';
 import NotFound from './comps/pages/NotFound';
 import Home from './comps/pages/Home';
 import MainDashboard from './comps/pages/MainDashboard';
+import {AuthProvider} from './comps/contexts/AuthContext';
+import User from './comps/User';
 
 function App() {
   return (
+    <AuthProvider>
       <main>
         <ul>
           <li><Link to="/" exact="true">Home</Link></li>
           <li><Link to="/application">Dashboard</Link></li>
+          <li>
+            <User/>
+          </li>
         </ul>
 
         <hr/>  
@@ -26,6 +32,8 @@ function App() {
         </Route>
       </Switch>
     </main>
+    </AuthProvider>
+
   )
 }
 

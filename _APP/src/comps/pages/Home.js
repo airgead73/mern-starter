@@ -1,14 +1,17 @@
 import React from 'react';
+import { Redirect } from 'react-router-dom';
+import { AuthContext } from '../contexts/AuthContext';
 
 const Home = () => {  
 
+  const authContext = React.useContext(AuthContext);
+
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
-  const [isPending, setIsPending] = React.useState(false);
-  const [isSuccess, setIsSuccess] = React.useState(false);
-  const [user, setUser] = React.useState('');
 
   const handleSubmit = (e) => {
+
+    console.log('handlesubmit')
 
     e.preventDefault();
 
@@ -16,8 +19,6 @@ const Home = () => {
       email,
       password
     }
-
-    setIsPending(true);
 
     fetch('/api/authenticate', {
       method: 'POST',
@@ -28,29 +29,22 @@ const Home = () => {
       if(!response.ok) {
         throw Error('Could not fetch data for that resource.')
       }
-      console.log(response)
       return response.json()
     })
     .then((data) => {
-      setIsPending(false);
-      setUser({
-        name: `${data.userInfo.firstName} ${data.userInfo.lastName}`
-      })
-      setIsSuccess(true);
-      console.log(data)
+      console.log(data);
+      authContext.setAuthState(data);
     })
     .catch((err) => {
-      setIsPending(false);
-      console.error(err.message);
-    })
+      console.error(err);
+    });
 
   }
 
   return ( 
     <React.Fragment>
-      {isPending && <p>pending...</p>}
-      {isSuccess && <p>{user.name} is logged in.</p>}
-      <form onSubmit={handleSubmit}>
+      {authContext.isAuthenticated() && <Redirect to="/application"/>}
+      <form onSubmit={(e) => handleSubmit(e)}>
         <fieldset>
           <legend>sign in</legend>
           <label htmlFor="email">email</label>
