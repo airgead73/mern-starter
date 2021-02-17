@@ -27,6 +27,10 @@ app.use(helmet.contentSecurityPolicy(policies));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, './../_PUBLIC')));
+app.use((req, res, next) => {
+  console.log(req.headers);
+  next();
+})
 
 /**
  * DEV MIDDLEWARE

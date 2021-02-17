@@ -1,25 +1,17 @@
 import React from 'react';
-import { AuthContext } from '../contexts/AuthContext';
 
-const useGet = (url) => {
+const usePublicGet = (url) => {
   const [data, setData] = React.useState(null);
   const [isLoading, setIsLoading] = React.useState(true);
   const [error, setError] = React.useState(null);
-  const authContext = React.useContext(AuthContext);
 
   React.useEffect(() => {
 
     const abortConstant = new AbortController();
 
     setTimeout(() => {
-      fetch(url, { 
-        method: 'GET',
-        signal: abortConstant.signal,
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${authContext.authState.token}`
-        }
-      })
+      fetch(url, { signal: abortConstant.signal })
+
         .then(response => {
           if(!response.ok) {
             throw Error('Could not fetch data for that resource.')
@@ -51,4 +43,4 @@ const useGet = (url) => {
 
 }
 
-export default useGet;
+export default usePublicGet;
