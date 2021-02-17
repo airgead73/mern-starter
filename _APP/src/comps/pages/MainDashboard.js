@@ -5,7 +5,7 @@ import { Dashboard as Tasks } from './Tasks';
 import { Dashboard as Milestones } from './Milestones';
 import { Dashboard as Diary } from './Diary';
 import NotFound from './NotFound';
-import { AuthContext } from '../contexts/AuthContext';
+import { AuthContext } from '../../contexts/AuthContext';
 
 const MainDashboard = () => {
 
