@@ -9,43 +9,29 @@ function generateId() {
 }
 
 function App() {
-
-  const [todos, setTodos] = React.useState([]);
   const [input, setInput] = React.useState('');
 
-  const handleSubmit = () => {
-    setTodos((todos) => todos.concat({
-      text: input,
-      id: generateId()
-    }));
-    setInput('')
-  }
-
-  const removeTodo = (id) => {
-    setTodos((todos) => todos.filter((t) => t.id !== id))
-  }
-
+  React.useEffect(() => {
+    document.title = `${240 - input.length} characters left.`
+  },[input]);
 
   return (
     <div>
-      <input 
+      <textarea
         type="text"
-        value={input}
-        placeholder='New todo'
+        value={input} 
         onChange={(e) => setInput(e.target.value)}
-      />
-      <button onClick={handleSubmit}>add</button>
+        cols="30" 
+        rows="10"
+        placeholder="type..."
+      ></textarea>
+      <br/>
+      <button
+        onClick={() => console.log(input)} 
+        disabled={input.length === 0 || input.length > 240}
+      >post</button>
 
-      <ul>
-        {todos.map(({ text, id }) => (
 
-          <li key={id}>
-            <span>{text}</span>
-            <button onClick={() => removeTodo(id)}>x</button>            
-          </li>
-
-        ))}
-      </ul>
 
     </div>
   )
