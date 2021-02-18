@@ -1,9 +1,14 @@
 const express = require('express');
 const cors = require('cors');
+const cookieParser = require('cookie-parser');
 const path = require('path');
 const helmet = require('helmet');
 const policies = require('../_CONFIG/csp');
-const jwt = require('express-jwt')
+const jwt = require('express-jwt');
+const csrf = require('csurf');
+const csrfProtection = csrf({
+  cookie: true
+});
 
 /**
  * INTIALIZE APP
@@ -28,6 +33,7 @@ app.use(helmet());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, './../_PUBLIC')));
+app.use(cookieParser());
 app.use((req, res, next) => {
   console.log(req.headers);
   next();

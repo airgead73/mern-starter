@@ -34,6 +34,10 @@ exports.authenticate = asyncHandler(async function(req, res, next) {
     const decodedToken = jwtDecode(token);
     const expiresAt = decodedToken.exp;
 
+    res.cookie('token', token, {
+      httpOnly: true
+    })
+
     return res
       .status(200)
       .json({

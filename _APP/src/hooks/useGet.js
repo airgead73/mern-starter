@@ -5,7 +5,6 @@ const useGet = (url) => {
   const [data, setData] = React.useState(null);
   const [isLoading, setIsLoading] = React.useState(true);
   const [error, setError] = React.useState(null);
-  const authContext = React.useContext(AuthContext);
 
   React.useEffect(() => {
 
@@ -16,8 +15,7 @@ const useGet = (url) => {
         method: 'GET',
         signal: abortConstant.signal,
         headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${authContext.authState.token}`
+          'Content-Type': 'application/json'
         }
       })
         .then(response => {
