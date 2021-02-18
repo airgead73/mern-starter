@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { lazy, Suspense } from 'react';
 import { Link, Route, Switch } from 'react-router-dom';
 import NotFound from './comps/pages/NotFound';
 import Home from './comps/pages/Home';
-import MainDashboard from './comps/pages/MainDashboard';
+//import MainDashboard from './comps/pages/MainDashboard';
+const MainDashboard = lazy(() => import('./comps/pages/MainDashboard'))
 import {AuthProvider} from './contexts/AuthContext';
 import User from './comps/User';
 
@@ -19,7 +20,7 @@ function App() {
         </ul>
 
         <hr/>  
-
+      <Suspense fallback={<div>loading...</div>}>
       <Switch>
         <Route exact path="/">
           <Home/>
@@ -31,6 +32,7 @@ function App() {
           <NotFound/>
         </Route>
       </Switch>
+      </Suspense>
     </main>
     </AuthProvider>
 

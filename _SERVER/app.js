@@ -3,6 +3,7 @@ const cors = require('cors');
 const path = require('path');
 const helmet = require('helmet');
 const policies = require('../_CONFIG/csp');
+const jwt = require('express-jwt')
 
 /**
  * INTIALIZE APP
@@ -18,7 +19,7 @@ connectDB();
 
 app.use(cors());
 app.use(helmet());
-app.use(helmet.contentSecurityPolicy(policies));
+//app.use(helmet.contentSecurityPolicy(policies));
 
 /**
  * MIDDLEWARE
@@ -30,7 +31,9 @@ app.use(express.static(path.join(__dirname, './../_PUBLIC')));
 app.use((req, res, next) => {
   console.log(req.headers);
   next();
-})
+});
+
+
 
 /**
  * DEV MIDDLEWARE
