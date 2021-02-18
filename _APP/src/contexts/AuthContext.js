@@ -17,14 +17,11 @@ const AuthProvider = ({ children }) => {
   });
 
   const setAuthInfo = ({ token, userInfo, expiresAt }) => {
-    localStorage.setItem('userInfo', JSON.stringify(userInfo));
-    localStorage.setItem('expiresAt', expiresAt)
     setAuthState({
       token,
       userInfo,
       expiresAt
     });
-    history.push('/')
   }
 
   const logout = () => {
@@ -53,9 +50,6 @@ const AuthProvider = ({ children }) => {
       value={{
         authState,
         setAuthState: authInfo => setAuthInfo(authInfo),
-        isAuthenticated,
-        isAdmin,
-        logout
       }}
     >
       { children }
